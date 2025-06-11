@@ -1,0 +1,72 @@
+[
+  {
+    "video_id": "sugestao1_esportes",
+    "title": "Melhores Gols da Semana",
+    "channel": "Futebol Total",
+    "publishedAt": "2024-05-01T08:00:00Z",
+    "categoryId": 17
+  },
+  {
+    "video_id": "sugestao2_musica",
+    "title": "Clipe Oficial: Banda Rock Alternativo",
+    "channel": "Rock Nation",
+    "publishedAt": "2024-05-02T09:00:00Z",
+    "categoryId": 10
+  },
+  {
+    "video_id": "sugestao3_documentario",
+    "title": "A Vida Secreta das Abelhas",
+    "channel": "Natureza Viva",
+    "publishedAt": "2024-05-03T10:00:00Z",
+    "categoryId": 27
+  },
+  {
+    "video_id": "sugestao4_tecnologia",
+    "title": "Review do Novo Smartphone X",
+    "channel": "Tech Reviews",
+    "publishedAt": "2024-05-04T11:00:00Z",
+    "categoryId": 28
+  },
+  {
+    "video_id": "sugestao5_comedia",
+    "title": "Stand-up Show Incrível",
+    "channel": "Comediante Famoso",
+    "publishedAt": "2024-05-05T12:00:00Z",
+    "categoryId": 23
+  },
+  {
+    "video_id": "sugestao6_automoveis",
+    "title": "Os Carros Mais Luxuosos de 2024",
+    "channel": "Velocidade Extrema",
+    "publishedAt": "2024-05-06T13:00:00Z",
+    "categoryId": 2
+  },
+  {
+    "video_id": "sugestao7_animais",
+    "title": "Animais Selvagens da Amazônia",
+    "channel": "Mundo Animal",
+    "publishedAt": "2024-05-07T14:00:00Z",
+    "categoryId": 15
+  },
+  {
+    "video_id": "sugestao8_noticias",
+    "title": "Análise Política Semanal",
+    "channel": "Jornal do Dia",
+    "publishedAt": "2024-05-08T15:00:00Z",
+    "categoryId": 25
+  },
+  {
+    "video_id": "sugestao9_culinaria",
+    "title": "Receitas Fáceis para o Jantar",
+    "channel": "Cozinha Prática",
+    "publishedAt": "2024-05-09T16:00:00Z",
+    "categoryId": 26
+  },
+  {
+    "video_id": "sugestao10_filme",
+    "title": "Filme Clássico: O Segredo",
+    "channel": "Cinema Antigo",
+    "publishedAt": "2024-05-10T17:00:00Z",
+    "categoryId": 1
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "video_id": "sugestao1_esportes",
+    "title": "Melhores Gols da Semana",
+    "category": "Esportes"
+  },
+  {
+    "video_id": "sugestao2_musica",
+    "title": "Clipe Oficial: Banda Rock Alternativo",
+    "category": "Música"
+  },
+  {
+    "video_id": "sugestao3_documentario",
+    "title": "A Vida Secreta das Abelhas",
+    "category": "Educação"
+  },
+  {
+    "video_id": "sugestao4_tecnologia",
+    "title": "Review do Novo Smartphone X",
+    "category": "Ciência e Tecnologia"
+  },
+  {
+    "video_id": "sugestao5_comedia",
+    "title": "Stand-up Show Incrível",
+    "category": "Humor"
+  },
+  {
+    "video_id": "sugestao6_automoveis",
+    "title": "Os Carros Mais Luxuosos de 2024",
+    "category": "Automóveis"
+  },
+  {
+    "video_id": "sugestao7_animais",
+    "title": "Animais Selvagens da Amazônia",
+    "category": "Animais"
+  },
+  {
+    "video_id": "sugestao8_noticias",
+    "title": "Análise Política Semanal",
+    "category": "Notícias"
+  },
+  {
+    "video_id": "sugestao9_culinaria",
+    "title": "Receitas Fáceis para o Jantar",
+    "category": "Como fazer e Estilo"
+  },
+  {
+    "video_id": "sugestao10_filme",
+    "title": "Filme Clássico: O Segredo",
+    "category": "Filme"
+  }
+]

@@ -1,0 +1,5 @@
+& "C:/Program Files/Python313/python.exe" "main.py" --input "data/historico.json" --output "data/recomendacoes.json"
+
+
+python main.py --input=data/historico.json --output=data/recomendacoes.json
+python main.py --input=data/historico.json --output=data/recomendacoes.json --threshold_individual=0.7 --threshold_soma_top_n=0.9 --n_top_categorias=2
