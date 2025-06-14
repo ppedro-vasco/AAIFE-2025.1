@@ -1,6 +1,7 @@
 import argparse
 from leitura.leitor_historico import carregar_historico
-from processamento.agrupador import analisar_categorias, identificar_bolha_e_dominantes # Importe a nova função
+# Importe apenas analisar_categorias, pois ela agora retorna tudo que main precisa
+from processamento.agrupador import analisar_categorias 
 from processamento.gerador_sugestoes import gerar_sugestoes_diversificadas
 from exportacao.exportador_json import exportar_sugestoes_json
 
@@ -24,25 +25,31 @@ def main():
     historico = carregar_historico(args.input)
 
     print(f"[INFO] Analisando {len(historico)} vídeos assistidos para identificar bolhas...")
-    # Chame a função analisar_categorias com os novos parâmetros
-    agrupamento, dominantes, bolha_identificada = analisar_categorias(
+    # A chamada a analisar_categorias agora captura todos os retornos
+    agrupamento, dominantes_crit_individual, bolha_identificada, entropia, severidade_bolha = analisar_categorias(
         historico,
         threshold_categoria_individual=args.threshold_individual,
         threshold_soma_categorias_top_n=args.threshold_soma_top_n,
         n_top_categorias=args.n_top_categorias
     )
 
-    print(f"[INFO] Categorias dominantes (critério individual): {dominantes}")
+    print(f"[INFO] Entropia da distribuição de categorias: {entropia}")
+    print(f"[INFO] Nível de severidade da bolha: {severidade_bolha}")
+    print(f"[INFO] Categorias dominantes (critério individual): {dominantes_crit_individual}")
+
+    # A mensagem final agora se baseia apenas na flag 'bolha_identificada' que já inclui todos os critérios
     if bolha_identificada:
-        print("[ALERTA] Uma bolha social/algorítmica foi identificada com base no seu consumo de conteúdo. ")
+        print("[ALERTA] Uma bolha social/algorítmica foi identificada com base no seu consumo de conteúdo.")
     else:
-        print("[INFO] Nenhuma bolha social/algorítmica significativa identificada neste histórico. ")
+        print("[INFO] Nenhuma bolha social/algorítmica significativa identificada neste histórico.")
 
     print("[INFO] Carregando base simulada para sugestões...")
     base_simulada = carregar_historico(args.base)
 
-    print("[INFO] Gerando sugestões diversificadas para 'estourar a bolha' (se houver)... ")
-    sugestoes = gerar_sugestoes_diversificadas(historico, dominantes, base_simulada, limite=args.limite)
+    print("[INFO] Gerando sugestões diversificadas para 'estourar a bolha' (se houver)...")
+    # Passamos as dominantes individuais para o gerador de sugestões,
+    # pois ele deve evitar APENAS as que já são muito fortes no consumo.
+    sugestoes = gerar_sugestoes_diversificadas(historico, dominantes_crit_individual, base_simulada, limite=args.limite)
 
     print(f"[INFO] Exportando {len(sugestoes)} sugestões para JSON...")
     exportar_sugestoes_json(sugestoes, args.output)
