@@ -2,51 +2,61 @@
   {
     "video_id": "sugestao1_esportes",
     "title": "Melhores Gols da Semana",
-    "category": "Esportes"
+    "category": "Esportes",
+    "justificativa": "Este vídeo pertence à categoria 'Esportes', que representa apenas  0.0% do seu histórico."
   },
   {
     "video_id": "sugestao2_musica",
     "title": "Clipe Oficial: Banda Rock Alternativo",
-    "category": "Música"
+    "category": "Música",
+    "justificativa": "Este vídeo pertence à categoria 'Música', que representa apenas  10.0% do seu histórico."
   },
   {
     "video_id": "sugestao3_documentario",
     "title": "A Vida Secreta das Abelhas",
-    "category": "Educação"
+    "category": "Educação",
+    "justificativa": "Este vídeo pertence à categoria 'Educação', que representa apenas  10.0% do seu histórico."
   },
   {
     "video_id": "sugestao4_tecnologia",
     "title": "Review do Novo Smartphone X",
-    "category": "Ciência e Tecnologia"
+    "category": "Ciência e Tecnologia",
+    "justificativa": "Este vídeo pertence à categoria 'Ciência e Tecnologia', que representa apenas  10.0% do seu histórico."
   },
   {
     "video_id": "sugestao5_comedia",
     "title": "Stand-up Show Incrível",
-    "category": "Humor"
+    "category": "Humor",
+    "justificativa": "Este vídeo pertence à categoria 'Humor', que representa apenas  0.0% do seu histórico."
   },
   {
     "video_id": "sugestao6_automoveis",
     "title": "Os Carros Mais Luxuosos de 2024",
-    "category": "Automóveis"
+    "category": "Automóveis",
+    "justificativa": "Este vídeo pertence à categoria 'Automóveis', que representa apenas  0.0% do seu histórico."
   },
   {
     "video_id": "sugestao7_animais",
     "title": "Animais Selvagens da Amazônia",
-    "category": "Animais"
+    "category": "Animais",
+    "justificativa": "Este vídeo pertence à categoria 'Animais', que representa apenas  0.0% do seu histórico."
   },
   {
     "video_id": "sugestao8_noticias",
     "title": "Análise Política Semanal",
-    "category": "Notícias"
+    "category": "Notícias",
+    "justificativa": "Este vídeo pertence à categoria 'Notícias', que representa apenas  0.0% do seu histórico."
   },
   {
     "video_id": "sugestao9_culinaria",
     "title": "Receitas Fáceis para o Jantar",
-    "category": "Como fazer e Estilo"
+    "category": "Como fazer e Estilo",
+    "justificativa": "Este vídeo pertence à categoria 'Como fazer e Estilo', que representa apenas  0.0% do seu histórico."
   },
   {
     "video_id": "sugestao10_filme",
     "title": "Filme Clássico: O Segredo",
-    "category": "Filme"
+    "category": "Filme",
+    "justificativa": "Este vídeo pertence à categoria 'Filme', que representa apenas  0.0% do seu histórico."
   }
 ]

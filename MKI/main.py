@@ -1,10 +1,10 @@
 import argparse
+
 from leitura.leitor_historico import carregar_historico
-# Importe apenas analisar_categorias, pois ela agora retorna tudo que main precisa
 from processamento.agrupador import analisar_categorias 
 from processamento.gerador_sugestoes import gerar_sugestoes_diversificadas
 from exportacao.exportador_json import exportar_sugestoes_json
-
+from utils.categorias import mapear_categoria
 
 def main():
     parser = argparse.ArgumentParser(description="Recomendador de vídeos diversificados no YouTube")
@@ -25,7 +25,6 @@ def main():
     historico = carregar_historico(args.input)
 
     print(f"[INFO] Analisando {len(historico)} vídeos assistidos para identificar bolhas...")
-    # A chamada a analisar_categorias agora captura todos os retornos
     agrupamento, dominantes_crit_individual, bolha_identificada, entropia, severidade_bolha = analisar_categorias(
         historico,
         threshold_categoria_individual=args.threshold_individual,
@@ -37,7 +36,6 @@ def main():
     print(f"[INFO] Nível de severidade da bolha: {severidade_bolha}")
     print(f"[INFO] Categorias dominantes (critério individual): {dominantes_crit_individual}")
 
-    # A mensagem final agora se baseia apenas na flag 'bolha_identificada' que já inclui todos os critérios
     if bolha_identificada:
         print("[ALERTA] Uma bolha social/algorítmica foi identificada com base no seu consumo de conteúdo.")
     else:
@@ -46,13 +44,31 @@ def main():
     print("[INFO] Carregando base simulada para sugestões...")
     base_simulada = carregar_historico(args.base)
 
-    print("[INFO] Gerando sugestões diversificadas para 'estourar a bolha' (se houver)...")
-    # Passamos as dominantes individuais para o gerador de sugestões,
-    # pois ele deve evitar APENAS as que já são muito fortes no consumo.
-    sugestoes = gerar_sugestoes_diversificadas(historico, dominantes_crit_individual, base_simulada, limite=args.limite)
+    print("[INFO] Gerando sugestões diversificadas com priorização por canais menos consumidos...")
+    sugestoes = gerar_sugestoes_diversificadas(
+        historico, dominantes_crit_individual, base_simulada, limite=args.limite
+    )
 
     print(f"[INFO] Exportando {len(sugestoes)} sugestões para JSON...")
-    exportar_sugestoes_json(sugestoes, args.output)
+
+    print("\n Sugestões com justificativas: \n")
+    for video in sugestoes:
+        categoria_nome = mapear_categoria(video.category_id)
+
+        # Frequência da categoria no histórico (reutilizando lógica)
+        total = len(historico)
+        frequencia = len([v for v in historico if v.category_id == video.category_id])
+        percentual = (frequencia/total) * 100 if total > 0 else 0.0
+
+        justificativa = (
+            f"→ {video.title} ({categoria_nome})\n"
+            f"   Justificativa: Este vídeo pertence à categoria '{categoria_nome}', "
+            f"que representa apenas {percentual:.1f}% do seu histórico.\n"
+        )
+
+        print(justificativa)
+    
+    exportar_sugestoes_json(sugestoes, args.output, historico)
 
     print("[OK] Processo concluído com sucesso!")
 

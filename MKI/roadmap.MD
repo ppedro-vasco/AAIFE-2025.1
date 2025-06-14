@@ -10,8 +10,8 @@ Inspirado no artigo *"A Conceptual Tool to Eliminate Filter Bubbles in Social Ne
 
 Promover conscientização e diversidade informacional por meio de:
 - Identificação de padrões de consumo concentrados (bolhas)
-- Sugestões de vídeos de categorias menos acessadas
-- Feedback claro, visual e, futuramente, contextual
+- Sugestões de vídeos de categorias e canais menos acessados
+- Feedback claro, visual e explicativo
 
 ---
 
@@ -28,10 +28,10 @@ A bolha de filtro é uma condição em que o usuário é exposto a conteúdo rep
 
 - Linguagem: **Python 3.x**
 - Execução via terminal (`argparse`)
-- Estrutura modular (módulos: leitura, análise, sugestão, exportação, visualização)
+- Estrutura modular (leitura, análise, sugestão, exportação, visualização)
 - Visualizações com `matplotlib`
-- Saídas em JSON
-- Pronto para extensão com API do YouTube e frontend
+- Saídas explicativas em JSON
+- Preparado para extensão com API do YouTube e interface web
 
 ---
 
@@ -48,80 +48,97 @@ A bolha de filtro é uma condição em que o usuário é exposto a conteúdo rep
     "categoryId": 24
   }
 ]
-base_simulada.json – Base geral de vídeos
-Usada para gerar sugestões com foco em categorias não dominantes.
+```
 
-recomendacoes.json – Saída do sistema
-Contém sugestões finais formatadas para visualização ou consumo posterior:
+### `base_simulada.json` – Base geral de vídeos
+Usada para gerar sugestões com foco em categorias e canais **não dominantes**.
 
-json
-Copiar
-Editar
+### `recomendacoes.json` – Saída do sistema
+Contém sugestões finais com justificativas legíveis:
+```json
 [
   {
     "video_id": "s1",
-    "title": "Vídeo Y",
-    "category": "Ciência e Tecnologia"
+    "title": "A origem do universo",
+    "category": "Ciência e Tecnologia",
+    "justificativa": "Este vídeo pertence à categoria 'Ciência e Tecnologia', que representa apenas 0.0% do seu histórico."
   }
 ]
-🚀 Como Executar
-bash
-Copiar
-Editar
-python main.py --input=data/historico.json --output=data/recomendacoes.json
-Parâmetros opcionais:
-
-bash
-Copiar
-Editar
---threshold_individual=0.7
---threshold_soma_top_n=0.85
---n_top_categorias=2
---limite=5
-📊 Funcionalidades Implementadas
-✅ Módulo “Alert the Bubble”
-Agrupamento por categorias
-
-Identificação de dominância (threshold por categoria e top-N)
-
-Cálculo de entropia de Shannon da distribuição de consumo
-
-Classificação da severidade da bolha (Alta, Média, Baixa)
-
-Exibição de gráfico de pizza da distribuição com matplotlib
-
-✅ Módulo “Burst the Bubble”
-Sugestão de vídeos de categorias pouco acessadas
-
-Filtragem para evitar repetições do histórico
-
-Exportação final em recomendacoes.json
-
-🗺️ Roadmap por Marcos
-Marco	Entregável	Status
-M1	MVP funcional: detecção básica de bolha e sugestões fora dela	✅ Concluído
-M2	Avaliação de intensidade da bolha + visualização gráfica	✅ Concluído
-M3	Justificativas nas sugestões + recomendação de canais	⏳ Planejado
-M4	Conexão com YouTube API + OAuth 2.0	⏳ Planejado
-M5	Interface gráfica/web interativa para alertas e sugestões	⏳ Planejado
-
-📚 Referência Teórica
-Amrollahi, A. (2021). A Conceptual Tool to Eliminate Filter Bubbles in Social Networks.
-Proceedings of the 54th Hawaii International Conference on System Sciences.
-
-📬 Contato
-Este projeto faz parte de um trabalho acadêmico de graduação em Sistemas de Informação.
-Para mais informações, entre em contato com:
-
-GitHub: @ppedro-vasco
-
-E-mail: pedro.vasconcelos.2019003566@estudante.ifsudestemg.edu.br
-
-yaml
-Copiar
-Editar
+```
 
 ---
 
-Você pode copiar esse conteúdo para um arquivo chamado `README.md` na raiz do seu projeto.  
-Quer que eu gere esse arquivo `.md` diretamente e te envie?
+## 🚀 Como Executar
+
+```bash
+python main.py --input=data/historico.json --output=data/recomendacoes.json
+```
+
+Parâmetros opcionais:
+```bash
+--threshold_individual=0.7
+--threshold_soma_top_n=0.9
+--n_top_categorias=2
+--limite=10
+```
+
+---
+
+## 📊 Funcionalidades Implementadas
+
+### ✅ Módulo “Alert the Bubble”
+- Agrupamento por categorias
+- Identificação de dominância por threshold individual e top-N
+- Cálculo de **entropia de Shannon** da distribuição
+- Classificação da severidade da bolha (Alta, Média, Baixa)
+- **Gráfico de pizza** para visualizar concentração
+- Alerta textual exibido no terminal
+
+### ✅ Módulo “Burst the Bubble”
+- Sugestão de vídeos de categorias pouco acessadas
+- **Filtragem por canais ainda não consumidos**
+- **Ranqueamento por diversidade de canal**
+- Exportação final com **justificativas** no JSON
+- Sugestões explicadas no terminal, exemplo:
+
+```text
+📌 Sugestões com justificativas:
+
+→ Melhores Gols da Semana (Esportes)
+   Justificativa: Este vídeo pertence à categoria 'Esportes', que representa apenas 0.0% do seu histórico.
+
+→ A Vida Secreta das Abelhas (Educação)
+   Justificativa: Este vídeo pertence à categoria 'Educação', que representa apenas 10.0% do seu histórico.
+
+→ Stand-up Show Incrível (Humor)
+   Justificativa: Este vídeo pertence à categoria 'Humor', que representa apenas 0.0% do seu histórico.
+```
+
+---
+
+## 🗺️ Roadmap por Marcos
+
+| Marco | Entregável                                                             | Status       |
+|-------|------------------------------------------------------------------------|--------------|
+| M1    | MVP funcional: detecção básica de bolha e sugestões fora dela          | ✅ Concluído |
+| M2    | Avaliação de intensidade da bolha + visualização gráfica               | ✅ Concluído |
+| M3    | Justificativas nas sugestões + recomendação e ranqueamento por canais  | ✅ Concluído |
+| M4    | Conexão com YouTube API + OAuth 2.0                                    | ⏳ Planejado |
+| M5    | Interface gráfica/web interativa para alertas e sugestões              | ⏳ Planejado |
+
+---
+
+## 📚 Referência Teórica
+
+Amrollahi, A. (2021). *A Conceptual Tool to Eliminate Filter Bubbles in Social Networks*.  
+Proceedings of the 54th Hawaii International Conference on System Sciences.
+
+---
+
+## 📬 Contato
+
+Este projeto faz parte de um Trabalho de Conclusão de Curso (TCC) em Sistemas de Informação.  
+Para mais informações, entre em contato com:
+
+- GitHub: [@ppedro-vasco](https://github.com/ppedro-vasco)
+- E-mail: pedro.vasconcelos.2019003566@estudante.ifsudestemg.edu.br

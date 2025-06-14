@@ -1,5 +1,6 @@
 from typing import List
 from modelos.videoDTO import Video
+from collections import Counter
 
 
 def gerar_sugestoes_diversificadas(
@@ -12,16 +13,16 @@ def gerar_sugestoes_diversificadas(
     Retorna sugestões de vídeos de categorias não-dominantes e não assistidos.
     """
     assistidos_ids = {video.video_id for video in historico}
+    canais_assistidos = {video.channel for video in historico}
+    canais_frequencia = Counter(canais_assistidos)
 
-    sugestoes = []
-    for video in base_simulada:
-        if (
-            video.category_id not in dominantes and
-            video.video_id not in assistidos_ids
-        ):
-            sugestoes.append(video)
+    candidatos = [
+        video for video in base_simulada
+        if video.video_id not in assistidos_ids
+        and video.category_id not in dominantes
+    ]
 
-        if len(sugestoes) >= limite:
-            break
+    # Ordena por frequência crescente do canal (menos visto primeiro)
+    candidatos.sort(key=lambda v: canais_frequencia.get(v.channel, 0))
 
-    return sugestoes
+    return candidatos[:limite]
