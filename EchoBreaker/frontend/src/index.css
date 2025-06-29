@@ -1,0 +1,53 @@
+/* frontend/src/index.css */
+
+@import "tailwindcss";
+
+/* Colocamos nossos estilos customizados dentro de @layer utilities */
+@layer utilities {
+    body {
+        font-family: 'Exo 2', sans-serif;
+        background-color: #111;
+        background-image:
+            linear-gradient(rgba(18, 18, 18, 0.95), rgba(18, 18, 18, 0.95)),
+            url('https://www.transparenttextures.com/patterns/diagmonds.png');
+    }
+
+    .font-orbitron {
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    /* Efeito de texto com brilho neon */
+    .text-glow-green {
+        color: #00ff9d;
+        text-shadow: 0 0 5px #00ff9d, 0 0 10px #00ff9d, 0 0 15px #00ff9d, 0 0 20px #004d2e;
+    }
+
+    .text-glow-orange {
+        color: #ff4d00;
+        text-shadow: 0 0 5px #ff4d00, 0 0 10px #ff4d00;
+    }
+
+    /* Efeito de metal escovado para containers */
+    .bg-metal {
+        background-color: #2a2a2e;
+        background-image: linear-gradient(45deg, #333 25%, transparent 25%),
+            linear-gradient(-45deg, #333 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, #333 75%),
+            linear-gradient(-45deg, transparent 75%, #333 75%);
+        background-size: 20px 20px;
+        border: 1px solid #444;
+    }
+
+    /* Efeito de chanfro/3D para botões */
+    .btn-metal {
+        background: linear-gradient(145deg, #444, #222);
+        border: 1px solid #555;
+        box-shadow: -3px -3px 8px rgba(70, 70, 70, 0.2), 3px 3px 8px rgba(0, 0, 0, 0.5);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .btn-metal:active {
+        background: linear-gradient(145deg, #222, #444);
+        box-shadow: inset -2px -2px 5px rgba(70, 70, 70, 0.2), inset 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+}
